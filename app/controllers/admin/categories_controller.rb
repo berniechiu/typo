@@ -25,8 +25,6 @@ class Admin::CategoriesController < Admin::BaseController
 
   def new_or_edit
     @categories = Category.find(:all)
-    @action   = params[:id] ? "edit" : "new"
-    @method   = params[:id] ? "put"  : "post"
     @category = params[:id] ? Category.find(params[:id]) : Category.new
     @category.attributes = params[:category]
 

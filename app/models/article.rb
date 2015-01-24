@@ -82,9 +82,14 @@ class Article < Content
 
   def merge_with(other_article_id)
     other_article = Article.find(other_article_id)
-    self.update_attributes(:title => "#{self.title}#{other_article.title}",
-                           :body  => "#{self.body}#{other_article.body}")
-    self.comments << other_article.comments
+    self.update_attributes(:body  => self.body + other_article.body)
+
+    other_article.comments.each do |comment|
+      comment.article_id = self.id
+      comment.save
+    end
+
+    other_article.destroy
   end
 
   attr_accessor :draft, :keywords

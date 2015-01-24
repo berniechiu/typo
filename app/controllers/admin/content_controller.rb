@@ -12,10 +12,10 @@ class Admin::ContentController < Admin::BaseController
 
     if other_article.nil? || article.id == other_article.id
       flash[:error] = _("Error, please enter a valid article!")
-      redirect_to "/admin/content/edit/#{article.id}"
+      redirect_to :action => "edit", :id => article.id
     else
       article.merge_with(other_article)
-      redirect_to "/admin/content/edit/#{article.id}"
+      redirect_to :action => "edit", :id => article.id
     end
   end
 

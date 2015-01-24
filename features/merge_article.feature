@@ -7,12 +7,12 @@ Feature: Merge Articles
     Given the blog is set up
     And I am logged into the admin panel
     Then the following articles exist
-      | id | title     | body                 |
-      | 2  | Article 1 | Lorem Ipsum          |
-      | 3  | Article 2 | Lorem Ipsum Extended |
+      | id | title    | body                 |
+      | 2  | Article1 | Lorem Ipsum          |
+      | 3  | Article2 | Lorem Ipsum Extended |
 
   Scenario: Successfully merge articles
-    Given I am on the article page for "Article 1"
+    Given I am on the article page for "Article1"
     And I fill in "merge_with" with "3"
     Then I press "Merge"
-    And the article "Article 1" should have body "Lorem Ipsum Lorem Ipsum Extended"
+    And the article "Article1" should have body "Lorem Ipsum Lorem Ipsum Extended"

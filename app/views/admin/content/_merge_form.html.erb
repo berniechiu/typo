@@ -2,7 +2,7 @@
   <h4><%= _("Merge Articles") %></h4>
   <div class="class">
     <%= form_tag(admin_merge_articles_path(@article.id), :method => :post) do %>
-      <%= text_field_tag :article, params[:merge_id] %>
+      <%= text_field_tag :merge_with %>
       <%= submit_tag "Merge", :name => nil %>
     <% end %>
   </div>

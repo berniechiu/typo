@@ -7,11 +7,11 @@ class Admin::ContentController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def merge_articles
-    article = Article.find_by_id(params[:id])
-    other_article = Article.find_by_id(params[:article])
+    article = Article.find(params[:id])
+    other_article = Article.find(params[:merge_with]) if params[:merge_with].present?
 
-    if article.id == other_article.id
-      flash[:error] = _("Error, you are not allowed to merge with the same article!")
+    if other_article.nil? || article.id == other_article.id
+      flash[:error] = _("Error, please enter a valid article!")
       redirect_to "/admin/content/edit/#{article.id}"
     else
       article.merge_with(other_article)
